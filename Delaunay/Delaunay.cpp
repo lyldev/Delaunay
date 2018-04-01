@@ -65,7 +65,7 @@ vector<Triangle> Delaunay::IncremInsert(vector<Pnt> vertexList)
 				edgeBuffer.push_back(i_t->e1);
 				edgeBuffer.push_back(i_t->e2);
 				edgeBuffer.push_back(i_t->e2);
-				triangleList.erase(i_t);
+				i_t = triangleList.erase(i_t);
 			}
 			else
 				i_t++;
@@ -74,12 +74,13 @@ vector<Triangle> Delaunay::IncremInsert(vector<Pnt> vertexList)
 
 		// 对edgeBuffer中的边进行去重
 		vector<Edge>::iterator i_e, j_e;
-		for(i_e=edgeBuffer.begin(); i_e!=edgeBuffer.end(); i_e++)
+		vector<Edge> eb2 = edgeBuffer;
+		for(i_e=eb2.begin(); i_e!=eb2.end(); i_e++)
 		{
 			for(j_e=edgeBuffer.begin(); j_e!=edgeBuffer.end(); )
 			{
-				if(i_e==j_e)
-					edgeBuffer.erase(j_e);
+				if(*i_e==*j_e)
+					j_e = edgeBuffer.erase(j_e);
 				else
 					j_e++;
 			}
@@ -101,15 +102,15 @@ vector<Triangle> Delaunay::IncremInsert(vector<Pnt> vertexList)
 		if((i_t->p1.getX()==prd.getX()&&i_t->p1.getY()==prd.getY()) ||
 		     (i_t->p2.getX()==prd.getX()&&i_t->p2.getY()==prd.getY()) ||
 		     (i_t->p3.getX()==prd.getX()&&i_t->p3.getY()==prd.getY()))
-			triangleList.erase(i_t);
+			i_t = triangleList.erase(i_t);
 		if((i_t->p1.getX()==pld.getX()&&i_t->p1.getY()==pld.getY()) ||
 			 (i_t->p2.getX()==pld.getX()&&i_t->p2.getY()==pld.getY()) ||
 			 (i_t->p3.getX()==pld.getX()&&i_t->p3.getY()==pld.getY()))
-			triangleList.erase(i_t);
+			i_t = triangleList.erase(i_t);
 		if((i_t->p1.getX()==pup.getX()&&i_t->p1.getY()==pup.getY()) ||
 		     (i_t->p2.getX()==pup.getX()&&i_t->p2.getY()==pup.getY()) ||
 		     (i_t->p3.getX()==pup.getX()&&i_t->p3.getY()==pup.getY()))
-			triangleList.erase(i_t);
+			i_t = triangleList.erase(i_t);
 		else
 			i_t++;
 	}
@@ -121,7 +122,7 @@ vector<Triangle> Delaunay::IncremInsert(vector<Pnt> vertexList)
 		if((i_v->getX()==prd.getX()&&i_v->getY()==prd.getY())||
 			(i_v->getX()==pld.getX()&&i_v->getY()==pld.getY())||
 			(i_v->getX()==pup.getX()&&i_v->getY()==pup.getY()))
-			vertexList.erase(i_v);
+			i_v = vertexList.erase(i_v);
 		else
 			i_v++;
 	}
