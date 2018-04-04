@@ -12,6 +12,8 @@ Delaunay::~Delaunay(void)
 
 vector<Triangle> Delaunay::IncremInsert(vector<Pnt> vertexList)
 {
+	vector<Triangle> triangleList;
+
 	// 获取x,y的min和max值
 	vector<Pnt>::iterator iter;
 	double Xmin=-1, Ymin=-1, Xmax=0, Ymax=0;
@@ -39,12 +41,13 @@ vector<Triangle> Delaunay::IncremInsert(vector<Pnt> vertexList)
 	double Xup = Xmid, Yup = Ymax+(Ymax-Ymin);
 
 	Pnt prd(Xrd,Yrd), pld(Xld,Yld), pup(Xup,Yup);
+	
 	vertexList.push_back(prd);
 	vertexList.push_back(pld);
 	vertexList.push_back(pup);
 	
 	Triangle superTri(prd, pld, pup);
-	vector<Triangle> triangleList;
+	
 	triangleList.push_back(superTri);
 
 	vector<Pnt>::iterator i_p;
@@ -64,7 +67,7 @@ vector<Triangle> Delaunay::IncremInsert(vector<Pnt> vertexList)
 			{
 				edgeBuffer.push_back(i_t->e1);
 				edgeBuffer.push_back(i_t->e2);
-				edgeBuffer.push_back(i_t->e2);
+				edgeBuffer.push_back(i_t->e3);
 				i_t = triangleList.erase(i_t);
 			}
 			else
@@ -83,30 +86,6 @@ vector<Triangle> Delaunay::IncremInsert(vector<Pnt> vertexList)
 				}
 			}
 		}
-
-		/*vector<Edge>::iterator i_e, j_e;
-		vector<Edge> eb2 = edgeBuffer;
-		for(i_e=eb2.begin(); i_e!=eb2.end(); i_e++)
-		{
-			bool flag = false;
-			for(j_e=edgeBuffer.begin(); j_e!=edgeBuffer.end(); )
-			{
-				if(*i_e==*j_e)
-				{
-					if(flag)  // 如果不是第一个相等的，则删除当前元素
-					{
-						j_e = edgeBuffer.erase(j_e);
-					}
-					else  // 如果是第一次相等，跳过
-					{
-						flag = true;
-						j_e++;
-					}
-				}
-				else 
-					j_e++;
-			}  
-		}*/
 
 		// 将edgeBuffer中的边与当前的点组合成若干三角形并添加到trangleList
 		vector<Edge>::iterator i_e2;
