@@ -73,18 +73,40 @@ vector<Triangle> Delaunay::IncremInsert(vector<Pnt> vertexList)
 		}
 
 		// 对edgeBuffer中的边进行去重
-		vector<Edge>::iterator i_e, j_e;
+		for(int fst=0; fst<edgeBuffer.size(); fst++)
+		{
+			for(int snd=fst+1; snd<edgeBuffer.size(); snd++)
+			{
+				if(edgeBuffer[snd]==edgeBuffer[fst])
+				{
+					edgeBuffer.erase(edgeBuffer.begin()+snd);
+				}
+			}
+		}
+
+		/*vector<Edge>::iterator i_e, j_e;
 		vector<Edge> eb2 = edgeBuffer;
 		for(i_e=eb2.begin(); i_e!=eb2.end(); i_e++)
 		{
+			bool flag = false;
 			for(j_e=edgeBuffer.begin(); j_e!=edgeBuffer.end(); )
 			{
 				if(*i_e==*j_e)
-					j_e = edgeBuffer.erase(j_e);
-				else
+				{
+					if(flag)  // 如果不是第一个相等的，则删除当前元素
+					{
+						j_e = edgeBuffer.erase(j_e);
+					}
+					else  // 如果是第一次相等，跳过
+					{
+						flag = true;
+						j_e++;
+					}
+				}
+				else 
 					j_e++;
-			}
-		}
+			}  
+		}*/
 
 		// 将edgeBuffer中的边与当前的点组合成若干三角形并添加到trangleList
 		vector<Edge>::iterator i_e2;
