@@ -118,23 +118,19 @@ vector<Triangle> Delaunay::IncremInsert(vector<Pnt> vertexList)
 	}
 
 	// 删除triangleList中使用 超级三角形顶点 的三角形
-	vector<Triangle>::iterator i_t;
-	for(i_t=triangleList.begin(); i_t!=triangleList.end(); )
+	vector<Triangle>::iterator i_t_;
+	for(i_t_=triangleList.begin(); i_t_!=triangleList.end(); )
 	{
-		if((i_t->p1.getX()==prd.getX()&&i_t->p1.getY()==prd.getY()) ||
-		     (i_t->p2.getX()==prd.getX()&&i_t->p2.getY()==prd.getY()) ||
-		     (i_t->p3.getX()==prd.getX()&&i_t->p3.getY()==prd.getY()))
-			i_t = triangleList.erase(i_t);
-		if((i_t->p1.getX()==pld.getX()&&i_t->p1.getY()==pld.getY()) ||
-			 (i_t->p2.getX()==pld.getX()&&i_t->p2.getY()==pld.getY()) ||
-			 (i_t->p3.getX()==pld.getX()&&i_t->p3.getY()==pld.getY()))
-			i_t = triangleList.erase(i_t);
-		if((i_t->p1.getX()==pup.getX()&&i_t->p1.getY()==pup.getY()) ||
-		     (i_t->p2.getX()==pup.getX()&&i_t->p2.getY()==pup.getY()) ||
-		     (i_t->p3.getX()==pup.getX()&&i_t->p3.getY()==pup.getY()))
-			i_t = triangleList.erase(i_t);
+		if((i_t_->p1.getX()==prd.getX()&&i_t_->p1.getY()==prd.getY()) ||(i_t_->p2.getX()==prd.getX()&&i_t_->p2.getY()==prd.getY()) ||(i_t_->p3.getX()==prd.getX()&&i_t_->p3.getY()==prd.getY()))
+			i_t_ = triangleList.erase(i_t_);
+
+		else if((i_t_->p1.getX()==pld.getX()&&i_t_->p1.getY()==pld.getY()) ||(i_t_->p2.getX()==pld.getX()&&i_t_->p2.getY()==pld.getY()) ||(i_t_->p3.getX()==pld.getX()&&i_t_->p3.getY()==pld.getY()))
+			i_t_ = triangleList.erase(i_t_);
+
+		else if((i_t_->p1.getX()==pup.getX()&&i_t_->p1.getY()==pup.getY()) ||(i_t_->p2.getX()==pup.getX()&&i_t_->p2.getY()==pup.getY()) ||(i_t_->p3.getX()==pup.getX()&&i_t_->p3.getY()==pup.getY()))
+			i_t_ = triangleList.erase(i_t_);
 		else
-			i_t++;
+			i_t_++;
 	}
 
 	// 从vertextList中删除超级三角形的顶点
