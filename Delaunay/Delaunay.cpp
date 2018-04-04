@@ -18,9 +18,9 @@ vector<Triangle> Delaunay::IncremInsert(vector<Pnt> vertexList)
 	for(iter=vertexList.begin(); iter!=vertexList.end(); iter++)
 	{
 		//Xmin=-1, Ymin=-1;
-		if(Xmin=-1||iter->getX()<Xmin)
+		if(Xmin==-1||(iter->getX())<Xmin)
 			Xmin=iter->getX();
-		if(Ymin=-1||iter->getY()<Ymin)
+		if(Ymin==-1||iter->getY()<Ymin)
 			Ymin=iter->getY();
 
 		//Xmax=0, Ymax=0;
