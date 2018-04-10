@@ -63,7 +63,7 @@ vector<Triangle> Delaunay::IncremInsert(vector<Pnt> vertexList)
 			Pnt center; double radius;
 			i_t->CalCircumcircle(center, radius);
 			// 如果点在外接圆内，把三角形的三条边加到edgeBuffer中，将当前三角形从trangleList中删除
-			if(i_p->getDist(center)<radius)
+			if(i_p->getDist(center)<=radius)
 			{
 				edgeBuffer.push_back(i_t->e1);
 				edgeBuffer.push_back(i_t->e2);

@@ -41,7 +41,7 @@ public:
 	{
 		e1.p1 = p1; e1.p2 = p2;
 		e2.p1 = p1; e2.p2 = p3;
-		e2.p1 = p2; e3.p2 = p3;
+		e3.p1 = p2; e3.p2 = p3;
 	};
 	~Triangle(void);
 	void CalCircumcircle(Pnt &center, double &radius);  //计算三角形外接圆的半径及圆心
