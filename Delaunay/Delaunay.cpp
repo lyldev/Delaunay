@@ -10,6 +10,7 @@ Delaunay::~Delaunay(void)
 {
 }
 
+// 逐点插入算法实现
 vector<Triangle> Delaunay::IncremInsert(vector<Pnt> vertexList)
 {
 	vector<Triangle> triangleList;
@@ -32,7 +33,7 @@ vector<Triangle> Delaunay::IncremInsert(vector<Pnt> vertexList)
 			Ymax=iter->getY();
 	}
 
-	// 生成SuperTriangle
+	// 生成SuperTriangle（超级三角形）
 	double half = (Xmax-Xmin)/2; // 最大x 和 最小x 间距的一半
 	double Xmid = Xmin + half, Ymid = Ymin; // 底边中点坐标
 
@@ -53,8 +54,9 @@ vector<Triangle> Delaunay::IncremInsert(vector<Pnt> vertexList)
 	vector<Pnt>::iterator i_p;
 	for(i_p=vertexList.begin(); i_p!=vertexList.end(); i_p++)
 	{
-		//initialize the edge buffer
+		//初始化 edge buffer
 		vector<Edge> edgeBuffer;
+		//vector<Pnt> pntBuffer;
 
 		vector<Triangle>::iterator i_t;
 		for(i_t=triangleList.begin(); i_t!=triangleList.end(); ) //error??
@@ -65,6 +67,42 @@ vector<Triangle> Delaunay::IncremInsert(vector<Pnt> vertexList)
 			// 如果点在外接圆内，把三角形的三条边加到edgeBuffer中，将当前三角形从trangleList中删除
 			if(i_p->getDist(center)<=radius)
 			{
+				/*Pnt oP, aP1, aP2; Edge longEdge;
+				// 判断三角形是否是钝角三角形
+				if(i_t->IsObtuseTriangle(oP, aP1, aP2, longEdge))
+				{
+					// 判断当前点和三角形外接圆圆心是否在同一侧
+					// aP1->aP2 | aP1->center | aP1->i_p
+					double ax = aP2.getX()-aP1.getX(); double ay = aP2.getY()-aP1.getY();
+					double bx = center.getX()-aP1.getX(); double by = center.getY()-aP1.getY();
+					double cx = i_p->getX()-aP1.getX(); double cy = i_p->getY()-aP1.getY();
+					
+					if((ax*by - ay*bx)*(ax*cy - ay*cx) > 0)
+					{
+						if(i_t->e1 == longEdge)
+						{
+							edgeBuffer.push_back(i_t->e2);
+							edgeBuffer.push_back(i_t->e3);
+						}
+						else if(i_t->e2 == longEdge)
+						{
+							edgeBuffer.push_back(i_t->e1);
+							edgeBuffer.push_back(i_t->e3);
+						}
+						else if(i_t->e3 == longEdge)
+						{
+							edgeBuffer.push_back(i_t->e1);
+							edgeBuffer.push_back(i_t->e2);
+						}
+					}
+				}
+				else
+				{
+					edgeBuffer.push_back(i_t->e1);
+					edgeBuffer.push_back(i_t->e2);
+					edgeBuffer.push_back(i_t->e3);
+				}*/
+
 				edgeBuffer.push_back(i_t->e1);
 				edgeBuffer.push_back(i_t->e2);
 				edgeBuffer.push_back(i_t->e3);
@@ -75,7 +113,7 @@ vector<Triangle> Delaunay::IncremInsert(vector<Pnt> vertexList)
 
 		}
 
-		// 对edgeBuffer中的边进行去重
+		/*// 对edgeBuffer中的边进行去重
 		for(int fst=0; fst<edgeBuffer.size(); fst++)
 		{
 			for(int snd=fst+1; snd<edgeBuffer.size(); snd++)
@@ -84,6 +122,27 @@ vector<Triangle> Delaunay::IncremInsert(vector<Pnt> vertexList)
 				{
 					edgeBuffer.erase(edgeBuffer.begin()+snd);
 				}
+			}
+		}*/
+
+
+		// 去掉edgeBuffer中所有有重复的边(而不只是去掉重复的两条边中的一条)
+		for(int fst=0; fst<edgeBuffer.size(); fst++)
+		{
+			bool isDoubly = false;
+
+			for(int snd=fst+1; snd<edgeBuffer.size(); snd++)
+			{
+				if(edgeBuffer[snd]==edgeBuffer[fst])
+				{
+					isDoubly = true;
+					edgeBuffer.erase(edgeBuffer.begin()+snd);
+				}
+			}
+
+			if(isDoubly)
+			{
+				edgeBuffer.erase(edgeBuffer.begin()+fst);
 			}
 		}
 
@@ -94,6 +153,7 @@ vector<Triangle> Delaunay::IncremInsert(vector<Pnt> vertexList)
 			Triangle t(*i_p, i_e2->p1, i_e2->p2);
 			triangleList.push_back(t);
 		}
+
 	}
 
 	// 删除triangleList中使用 超级三角形顶点 的三角形

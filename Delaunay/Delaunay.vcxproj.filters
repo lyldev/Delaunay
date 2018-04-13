@@ -15,13 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="IncremInsert.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="Triangle.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Pnt.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Delaunay.h">
@@ -29,13 +23,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="IncremInsert.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="Triangle.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Pnt.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Delaunay.cpp">

@@ -62,14 +62,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Delaunay.h" />
-    <ClInclude Include="IncremInsert.h" />
-    <ClInclude Include="Pnt.h" />
     <ClInclude Include="Triangle.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Delaunay.cpp" />
-    <ClCompile Include="IncremInsert.cpp" />
-    <ClCompile Include="Pnt.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="Triangle.cpp" />
   </ItemGroup>

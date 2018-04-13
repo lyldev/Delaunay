@@ -1,15 +1,19 @@
-﻿生成启动时间为 2018/4/10 11:14:35。
+﻿生成启动时间为 2018/4/13 9:08:01。
      1>项目“D:\Codes\VS2010\Delaunay\Delaunay\Delaunay.vcxproj”在节点 2 上(build 个目标)。
      1>InitializeBuildStatus:
          正在创建“Debug\Delaunay.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
        ClCompile:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt test.cpp
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Delaunay.cpp Triangle.cpp test.cpp
          test.cpp
-     1>d:\codes\vs2010\delaunay\delaunay\test.cpp(14): warning C4018: “<”: 有符号/无符号不匹配
+     1>d:\codes\vs2010\delaunay\delaunay\test.cpp(16): warning C4018: “<”: 有符号/无符号不匹配
+         Delaunay.cpp
+     1>d:\codes\vs2010\delaunay\delaunay\delaunay.cpp(130): warning C4018: “<”: 有符号/无符号不匹配
+     1>d:\codes\vs2010\delaunay\delaunay\delaunay.cpp(134): warning C4018: “<”: 有符号/无符号不匹配
+         正在生成代码...
+         正在跳过...(未检测到相关更改)
+         Triangle.cpp
        Link:
          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Codes\VS2010\Delaunay\Debug\Delaunay.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\Delaunay.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\Codes\VS2010\Delaunay\Debug\Delaunay.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Codes\VS2010\Delaunay\Debug\Delaunay.lib" /MACHINE:X86 Debug\Delaunay.obj
-         Debug\IncremInsert.obj
-         Debug\Pnt.obj
          Debug\test.obj
          Debug\Triangle.obj
          LINK : 没有找到 D:\Codes\VS2010\Delaunay\Debug\Delaunay.exe 或上一个增量链接没有生成它；正在执行完全链接
@@ -23,4 +27,4 @@
 
 生成成功。
 
-已用时间 00:00:01.94
+已用时间 00:00:03.33
